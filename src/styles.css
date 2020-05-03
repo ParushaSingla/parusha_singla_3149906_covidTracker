@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import "../node_modules/ngx-toastr/toastr.css";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-card, .mat-card-actions, .mat-card-header { text-align: -webkit-center; }
+mat-raised-button { outline: none !important }
+button:focus{outline: none; border:0;}
+.mat-typography {
+   font: 400 18px/20px Roboto
+}
+.mat-form-field-infix {
+  display: block;
+  position: relative;
+  flex: auto;
+  min-width: 0;
+  width: 312px;
+}
+

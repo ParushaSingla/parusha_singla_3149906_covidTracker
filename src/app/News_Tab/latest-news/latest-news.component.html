@@ -1,0 +1,18 @@
+<!-- <div> <b>Latest News</b> </div> -->
+<div *ngFor="let item of newsToBeShown">
+  <div class="card" style="width: 80%;background-color: #f7f7f7;; margin: 10px auto;">
+    <div class="card-body">
+      <h1 class="card-title"><b>{{ item.title }}</b></h1>
+      <p class="card-text">{{ item.description }}</p>
+    </div>
+    <div class="card-body">
+      <button type="submit" on-click="moreInfo(item.id)">More Info</button>
+    </div>
+    <div class="card-body" *ngIf="hideFullNews&&item.id==showForId">
+      <p class="card-text"><b>Summary :</b><br><br>{{ item.summary }}
+      <br><br>
+      <b>For FullNews  :</b> <br><a href="{{item.fullNews}}">click here</a>
+      </p>
+    </div>
+  </div>
+</div>

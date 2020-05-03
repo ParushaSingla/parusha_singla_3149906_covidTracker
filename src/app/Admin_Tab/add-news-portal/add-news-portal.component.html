@@ -1,0 +1,94 @@
+<mat-card
+  class="example-card"
+  style="
+    width: 720px;
+    margin: 50px auto;
+    background-color: #f7f7f7;
+    height: 400px;
+  "
+>
+  <mat-card-header style="margin-left: 267px;">
+    <mat-card-title>Add News</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form
+      class="example-form"
+      [formGroup]="newsForm"
+      (ngSubmit)="addNews(newsForm.value)"
+    >
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width" style="width:340px">
+              <input
+                matInput
+                placeholder="Title"
+                formControlName="title"
+                required
+              />
+              <mat-error *ngIf="newsForm.get('title').errors?.required"
+                >Please Enter Title .</mat-error
+              >
+              <mat-error *ngIf="newsForm.get('title').errors?.minlength"
+                >Title should be longer than 5 .</mat-error
+              >
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width" style="width:340px">
+              <input
+                matInput
+                placeholder="Description"
+                formControlName="description"
+                required
+              />
+              <mat-error *ngIf="newsForm.get('description').invalid"
+                >Please Enter Description .</mat-error
+              >
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field appearance="fill" style="width:340px">
+              <mat-label>Summary</mat-label>
+              <textarea matInput formControlName="summary"></textarea>
+              <mat-error *ngIf="newsForm.get('summary').errors?.required"
+                >Please Enter Summary .</mat-error
+              >
+              <mat-error *ngIf="newsForm.get('summary').errors?.maxlength"
+                >Summary can not extend 100 words.</mat-error
+              >
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field appearance="fill" style="width:340px">
+              <mat-label>Full News</mat-label>
+              <input type="url" matInput formControlName="fullNews" />
+              <mat-error *ngIf="newsForm.get('fullNews').errors?.required"
+                >Please Enter Full News .</mat-error
+              >
+              <mat-error *ngIf="newsForm.get('fullNews').errors?.pattern"
+                >Please Enter Http url .</mat-error
+              >
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+      <mat-card-actions>
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          [disabled]="newsForm.invalid"
+        >
+          Post The News
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+</mat-card>

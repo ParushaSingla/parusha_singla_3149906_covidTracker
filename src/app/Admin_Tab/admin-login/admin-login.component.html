@@ -1,0 +1,41 @@
+<mat-card
+  class="example-card"
+  style="width: 720px; margin: 50px auto; background-color: #f7f7f7; height: 271px;"
+>
+  <mat-card-header style="margin-left: 267px;">
+    <mat-card-title>Login</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="example-form" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="User Name" formControlName="username" required />
+              <mat-error *ngIf="loginForm.get('username').invalid">Enter UserName!!</mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                placeholder="Password"
+                formControlName="password"
+                type="password"
+                required
+              />
+              <mat-error id="#username-error-msg" name="#username-error-msg" *ngIf="loginForm.get('password').invalid">Enter Password!!</mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+      <mat-card-actions>
+        <button type="submit" id="#password-error-msg" name="#password-error-msg"mat-raised-button color="primary" [disabled]="!loginForm.valid" > Login</button>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+</mat-card>
+<router-outlet></router-outlet>
+

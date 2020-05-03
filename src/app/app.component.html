@@ -1,0 +1,32 @@
+<div>
+  <nav class="navbar navbar-expand navbar-fixed-top navbar-dark bg-dark">
+    <ul class="navbar-nav" style="width: 90%;">
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['dashBoard']"
+          routerLinkActive="router-link-active"
+          >DashBoard</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['news']">Latest News</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['precaution']">Precaution</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['adminLogin']">Admin Login</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav">
+      <li *ngIf="logoutEnabled()">
+        <button type="button" class="btn btn-primary" (click)="logOut()">
+          LogOut
+        </button>
+      </li>
+    </ul>
+  </nav>
+</div>
+<router-outlet></router-outlet>

@@ -1,0 +1,84 @@
+<div class="Level" style="margin: 50px auto;">
+  <div
+    class="level-item is-cherry fadeInUp"
+    style="animation-delay: 1s; color: #ff073a;"
+  >
+    <h2 class="heading">Confirmed</h2>
+    <h1>{{ confirmed | number }}</h1>
+  </div>
+  <div
+    class="level-item is-blue fadeInUp"
+    style="animation-delay: 1.1s; color: #007bff;"
+  >
+    <h2 class="heading">Active</h2>
+    <h1 class="title has-text-info">{{ active | number }}</h1>
+  </div>
+  <div
+    class="level-item is-green fadeInUp"
+    style="animation-delay: 1.2s; color: #28a745;"
+  >
+    <h2 class="heading">Recovered</h2>
+    <h1 class="title has-text-success">{{ recovered | number }}</h1>
+  </div>
+  <div
+    class="level-item is-gray fadeInUp"
+    style="animation-delay: 1.3s; color: #6c757d;"
+  >
+    <h2 class="heading">Deceased</h2>
+    <h1 class="title has-text-grey">{{ deceased | number }}</h1>
+  </div>
+</div>
+<div>
+  <table
+    mat-table
+    [dataSource]="stateData"
+    multiTemplateDataRows
+    class="mat-elevation-z8"
+    style="width: 960px; margin: 10px auto;"
+  >
+    <ng-container
+      matColumnDef="{{ column }}"
+      *ngFor="let column of displayedColumns"
+    >
+      <th mat-header-cell *matHeaderCellDef style="font-size: medium;">
+        <b>{{ column | uppercase }}</b>
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
+    </ng-container>
+
+    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+    <ng-container matColumnDef="expandedDetail">
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [attr.colspan]="displayedColumns.length"
+      >
+        <div
+          class="example-element-detail"
+          [@detailExpand]="
+            element == expandedElement ? 'expanded' : 'collapsed'
+          "
+        >
+          <app-district-list
+            *ngIf="element == expandedElement && element.confirmed != 0"
+            [districtData]="districts(element.state)"
+          ></app-district-list>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let element; columns: displayedColumns"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element"
+    ></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: ['expandedDetail']"
+      class="example-detail-row"
+    ></tr>
+  </table>
+</div>

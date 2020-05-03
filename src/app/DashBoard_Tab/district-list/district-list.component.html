@@ -1,0 +1,21 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">District</th>
+      <th scope="col">Confirmed</th>
+      <th scope="col">Active</th>
+      <th scope="col">Recovered</th>
+      <th scope="col">Deceased</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+  <tbody>
+    <tr *ngFor="let item of stateIs | keyvalue">
+      <td>{{ item.key }}</td>
+      <td>{{ item.value.confirmed }}</td>
+      <td>{{ item.value.active }}</td>
+      <td>{{ item.value.recovered }}</td>
+      <td>{{ item.value.deceased }}</td>
+    </tr>
+  </tbody>
+</table>
